@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_banner"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.uguke.code.banner.view.BannerViewPager
+        android:id="@+id/container_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+    </com.uguke.code.banner.view.BannerViewPager>
+
+    <RelativeLayout
+        android:id="@+id/container_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:id="@+id/container_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/indicator_num"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="6dp"
+            android:gravity="center"
+            android:text="0/0"
+            android:textSize="14sp"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:id="@+id/container_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/container_indicator"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/banner_title"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="marquee"
+                android:maxLines="1"/>
+            <TextView
+                android:id="@+id/banner_hint"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:ellipsize="marquee"
+                android:maxLines="1"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
