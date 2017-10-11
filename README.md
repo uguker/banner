@@ -18,11 +18,11 @@ dependencies {
 }
 ```
 ## 效果
-<img src="https://github.com/uguker/logger/blob/master/screenshot/banner.gif" height="160"><br>
+<img src="https://github.com/uguker/banner/blob/master/screenshot/banner.gif" height="160"><br>
 
 ## 使用
 ```
-Banner banner = (Banner) findViewById(R.id.banner);
+	Banner banner = (Banner) findViewById(R.id.banner);
         adapter = new ImageBannerAdapter();
         adapter.setImageLoader(new SimpleImageLoader() {
             @Override
