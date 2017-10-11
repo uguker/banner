@@ -39,15 +39,20 @@
         <attr name="indicator_num_textSize" format="dimension"></attr>
         <!-- 数字指示器间隔 -->
         <attr name="indicator_num_margin" format="dimension"></attr>
-
+        <!-- 指示器背景色 -->
         <attr name="indicator_background" format="reference|color"></attr>
+        <!-- 单个指示器宽度 -->
         <attr name="indicator_width" format="dimension"></attr>
+        <!-- 单个指示器高度 -->
         <attr name="indicator_height" format="dimension"></attr>
+        <!-- 指示器间间隔 -->
         <attr name="indicator_in_margin" format="dimension"></attr>
+        <!-- 指示器外部间隔 -->
         <attr name="indicator_margin" format="dimension"></attr>
         <attr name="indicator_marginLeft" format="dimension"></attr>
         <attr name="indicator_marginRight" format="dimension"></attr>
         <attr name="indicator_marginBottom" format="dimension"></attr>
+        <!-- 指示器内部间隔 -->
         <attr name="indicator_padding" format="dimension"></attr>
         <attr name="indicator_paddingLeft" format="dimension"></attr>
         <attr name="indicator_paddingRight" format="dimension"></attr>
@@ -60,26 +65,44 @@
 
         <!-- 选择时的指示器的形状 -->
         <attr name="indicator_selected_shape" format="enum">
+            <!-- 实心圆 -->
             <enum name="circle" value="0"></enum>
+            <!-- 实心方形 -->
             <enum name="square" value="1"></enum>
+            <!-- 线条 -->
             <enum name="line" value="2"></enum>
+            <!-- 五角星 -->
             <enum name="star" value="3"></enum>
+            <!-- 三角形 -->
             <enum name="triangle" value="4"></enum>
+            <!-- 圆环 -->
             <enum name="ring" value="5"></enum>
+            <!-- 空心方形 -->
             <enum name="emptySquare" value="6"></enum>
+            <!-- 空心五角星 -->
             <enum name="emptyStar" value="7"></enum>
+            <!-- 空心三角形 -->
             <enum name="emptyTriangle" value="8"></enum>
         </attr>
         <!-- 未选择时的指示器的形状 -->
         <attr name="indicator_unselected_shape" format="enum">
+            <!-- 实心圆 -->
             <enum name="circle" value="0"></enum>
+            <!-- 实心方形 -->
             <enum name="square" value="1"></enum>
+            <!-- 线条 -->
             <enum name="line" value="2"></enum>
+            <!-- 五角星 -->
             <enum name="star" value="3"></enum>
+            <!-- 三角形 -->
             <enum name="triangle" value="4"></enum>
+            <!-- 圆环 -->
             <enum name="ring" value="5"></enum>
+            <!-- 空心方形 -->
             <enum name="emptySquare" value="6"></enum>
+            <!-- 空心五角星 -->
             <enum name="emptyStar" value="7"></enum>
+            <!-- 空心三角形 -->
             <enum name="emptyTriangle" value="8"></enum>
         </attr>
 
