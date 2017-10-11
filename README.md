@@ -18,7 +18,7 @@ dependencies {
 }
 ```
 ## 效果
-<img src="https://github.com/uguker/banner/blob/master/screenshot/banner.gif" height="160"><br>
+<img src="https://github.com/uguker/banner/tree/master/screenshot/banner.gif" height="160"><br>
 
 ## 使用
 ```
