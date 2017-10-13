@@ -1,17 +1,14 @@
 package com.uguke.code.banner.adapter;
 
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
-import android.util.SparseArray;
+
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.uguke.code.banner.bean.BannerValue;
+import com.uguke.code.banner.bean.IBannerValue;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
+
 
 /**
  * 功能描述：轮播图适配器
@@ -28,7 +25,7 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
     private boolean isLoop = false;
     /** 刷新数据监听 **/
     private OnRefreshListener listener;
-    protected List<BannerValue> bannerValues;
+    protected List<IBannerValue> bannerValues;
 
     @Override
     public int getCount() {
@@ -80,7 +77,7 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
      * 功能描述：设置数据源
      * @param data
      */
-    public void setData(List<BannerValue> data) {
+    public void setData(List<IBannerValue> data) {
         setData(data, isLoop);
     }
 
@@ -88,7 +85,7 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
      * 功能描述：设置数据源
      * @param data
      */
-    public void setData(List<BannerValue> data, boolean isLoop) {
+    public void setData(List<IBannerValue> data, boolean isLoop) {
         bannerValues = data;
         if (data != null && data.size() > 0) {
             this.isLoop = isLoop;
@@ -138,7 +135,7 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
      * 功能描述：获取数据源
      * @return
      */
-    public List<BannerValue> getData() {
+    public List<IBannerValue> getData() {
         return bannerValues;
     }
     /**

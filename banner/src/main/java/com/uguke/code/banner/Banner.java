@@ -576,6 +576,11 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         indicatorList.clear();
         indicatorContainer.removeAllViews();
         initDrawable();
+        if (adapter.getRealCount() == 0) {
+            indicatorContainer.setVisibility(INVISIBLE);
+        } else {
+            indicatorContainer.setVisibility(VISIBLE);
+        }
         for (int i = 0; i < adapter.getRealCount(); i++) {
             View view = new View(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
