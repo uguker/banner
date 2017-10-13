@@ -4,7 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.uguke.code.banner.bean.BannerValue;
+import com.uguke.code.banner.bean.IBannerValue;
 import com.uguke.code.banner.loader.SimpleImageLoader;
 
 /**
@@ -46,7 +46,7 @@ public class ImageBannerAdapter extends BannerAdapter {
             return;
         ImageView image = (ImageView) holder.itemView;
         image.setScaleType(scaleType);
-        final BannerValue value = (BannerValue) bannerValues.get(position);
+        final IBannerValue value = (IBannerValue) bannerValues.get(position);
         imageLoader.loadImage(holder.itemView.getContext(), value.getUri(), image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
