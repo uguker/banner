@@ -29,7 +29,7 @@ import android.widget.TextView;
 
 import com.uguke.code.banner.adapter.BannerAdapter;
 import com.uguke.code.banner.adapter.ImageBannerAdapter;
-import com.uguke.code.banner.bean.BannerValue;
+import com.uguke.code.banner.bean.IBannerValue;
 import com.uguke.code.banner.transformer.BaseTransformer;
 import com.uguke.code.banner.util.ShapeUtil;
 import com.uguke.code.banner.view.BannerScroller;
@@ -856,12 +856,12 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
 
         if (adapter.getRealCount() > 0) {
             if (isLoop) {
-                BannerValue value = (BannerValue) adapter.getData().get(indicatorLastPosition + 1);
+                IBannerValue value = (IBannerValue) adapter.getData().get(indicatorLastPosition + 1);
                 pagerContainer.setCurrentItem(indicatorLastPosition + 1, true);
                 bannerHint.setText(value.getHint());
                 bannerTitle.setText(value.getTitle());
             } else {
-                BannerValue value = (BannerValue) adapter.getData().get(indicatorLastPosition);
+                IBannerValue value = (IBannerValue) adapter.getData().get(indicatorLastPosition);
                 pagerContainer.setCurrentItem(indicatorLastPosition, true);
                 bannerHint.setText(value.getHint());
                 bannerTitle.setText(value.getTitle());
@@ -899,7 +899,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
     @Override
     public void onPageSelected(int position) {
 
-        BannerValue value = (BannerValue) adapter.getData().get(position);
+        IBannerValue value = (IBannerValue) adapter.getData().get(position);
         //设置Banner属性
         bannerHint.setText(value.getHint());
         bannerTitle.setText(value.getTitle());
