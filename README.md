@@ -14,7 +14,7 @@ allprojects {
 2. 添加依赖关系
 ```
 dependencies {
-	compile 'com.github.uguker:banner:1.1.2'
+	compile 'com.github.uguker:banner:1.1.3'
 }
 ```
 ## 效果
@@ -55,8 +55,9 @@ dependencies {
         values.add(value);
         //绑定数据
         banner.setAdapter(adapter);
-        adapter.setData(values);
-        adapter.setScaleType(ImageView.ScaleType.FIT_XY);
+        adapter.setData(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+	adapter.setData(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+        adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int realPosition, int itemPosition, BannerValue value) {
