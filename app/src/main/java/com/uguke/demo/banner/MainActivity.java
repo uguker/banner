@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
         values.add(value);
         //绑定数据
         banner.setAdapter(adapter);
-        adapter.setData(values);
+        adapter.setData(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+        adapter.setData(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
             @Override

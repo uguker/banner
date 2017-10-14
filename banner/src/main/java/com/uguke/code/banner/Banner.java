@@ -596,6 +596,9 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
             indicatorContainer.addView(view);
             indicatorList.add(view);
         }
+        if (isLoop && adapter.getCount() > 0) {
+            pagerContainer.setCurrentItem(1, false);
+        }
     }
 
     /**
