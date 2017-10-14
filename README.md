@@ -14,7 +14,7 @@ allprojects {
 2. 添加依赖关系
 ```
 dependencies {
-	compile 'com.github.uguker:banner:1.1.1'
+	compile 'com.github.uguker:banner:1.1.2'
 }
 ```
 ## 效果
