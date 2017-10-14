@@ -14,11 +14,11 @@ allprojects {
 2. 添加依赖关系
 ```
 dependencies {
-	compile 'com.github.uguker:banner:1.0.8'
+	compile 'com.github.uguker:banner:1.1.1'
 }
 ```
 ## 效果
-<img src="https://github.com/uguker/banner/tree/master/screenshot/banner.gif" height="160"><br>
+<img src="https://github.com/uguker/banner/blob/master/screenshot/banner.gif" height="160"><br>
 
 ## 使用
 ```
