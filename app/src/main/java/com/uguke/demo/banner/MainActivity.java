@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.uguke.code.banner.Banner;
 import com.uguke.code.banner.adapter.ImageBannerAdapter;
 import com.uguke.code.banner.bean.BannerValue;
+import com.uguke.code.banner.bean.IBannerValue;
 import com.uguke.code.banner.loader.SimpleImageLoader;
 import com.uguke.code.banner.transformer.BTFTransformer;
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int realPosition, int itemPosition, BannerValue value) {
+            public void onItemClick(int realPosition, int itemPosition, IBannerValue value) {
                 Toast.makeText(MainActivity.this,
                         value.getTitle() + realPosition + itemPosition,
                         Toast.LENGTH_SHORT).show();

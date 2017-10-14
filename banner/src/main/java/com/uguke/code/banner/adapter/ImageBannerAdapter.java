@@ -82,6 +82,6 @@ public class ImageBannerAdapter extends BannerAdapter {
          * @param itemPosition Item位置
          * @param value 数据
          */
-        void onItemClick(int realPosition, int itemPosition, BannerValue value);
+        void onItemClick(int realPosition, int itemPosition, IBannerValue value);
     }
 }

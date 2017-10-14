@@ -9,6 +9,7 @@ import com.uguke.code.banner.transformer.FTBTransformer;
 import com.uguke.code.banner.transformer.RotateDownTransformer;
 import com.uguke.code.banner.transformer.RotateUpTransformer;
 import com.uguke.code.banner.transformer.ScaleTransformer;
+import com.uguke.code.banner.transformer.StackTransformer;
 import com.uguke.code.banner.transformer.ZoomInTransformer;
 import com.uguke.code.banner.transformer.ZoomOutTransformer;
 import com.uguke.code.banner.transformer.ZoomSlideTransformer;
@@ -65,7 +66,7 @@ class TransformerManager {
         transformers.add(new RotateDownTransformer());
         transformers.add(new RotateUpTransformer());
         transformers.add(new ScaleTransformer());
-        transformers.add(new ScaleTransformer());
+        transformers.add(new StackTransformer());
         transformers.add(new ZoomInTransformer());
         transformers.add(new ZoomOutTransformer());
         transformers.add(new ZoomSlideTransformer());
