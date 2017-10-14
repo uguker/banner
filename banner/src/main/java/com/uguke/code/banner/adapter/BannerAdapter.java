@@ -22,7 +22,7 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
     /** 记录真实数量 **/
     private int realCount = 0;
     /** 是否是可循环模式 **/
-    private boolean isLoop = false;
+    private boolean isLoop = true;
     /** 刷新数据监听 **/
     private OnRefreshListener listener;
     protected List<IBannerValue> bannerValues;
