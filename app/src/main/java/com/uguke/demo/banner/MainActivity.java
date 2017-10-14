@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int realPosition, int itemPosition) {}
         });
-        banner.start();
+        banner.start();         //最好放到设置数据源之后，不然会从最后一张开始展示
 
     }
 }

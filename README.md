@@ -14,7 +14,7 @@ allprojects {
 2. 添加依赖关系
 ```
 dependencies {
-	compile 'com.github.uguker:banner:1.1.5'
+	compile 'com.github.uguker:banner:1.1.6'
 }
 ```
 ## 效果
@@ -56,7 +56,7 @@ dependencies {
         //绑定数据
         banner.setAdapter(adapter);
         adapter.setData(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
-	adapter.setData(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+		adapter.setData(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
             @Override
@@ -111,9 +111,9 @@ dependencies {
             @Override
             public void onPageSelected(int realPosition, int itemPosition) {}
         });
-        banner.start();
+        banner.start();			//最好放到设置数据源之后，不然会从最后一张开始展示
 
-	//banner.stop();	//停止轮播图滚动
+		//banner.stop();		//停止轮播图滚动
 ```
 
 ## XML属性
