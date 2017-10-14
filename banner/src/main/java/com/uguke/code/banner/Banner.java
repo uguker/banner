@@ -786,13 +786,6 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 @Override
                 public void onRefresh() {
                     initIndicator();
-                    if (adapter.getRealCount() > 0) {
-                        if (isLoop) {
-                            pagerContainer.setCurrentItem(1, false);
-                        } else {
-                            pagerContainer.setCurrentItem(0, false);
-                        }
-                    }
                 }
             });
         }
