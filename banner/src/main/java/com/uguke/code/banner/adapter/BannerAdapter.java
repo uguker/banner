@@ -9,7 +9,6 @@ import com.uguke.code.banner.bean.IBannerValue;
 
 import java.util.List;
 
-
 /**
  * 功能描述：轮播图适配器
  * @author LeiJue
@@ -25,15 +24,11 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
     private boolean isLoop = true;
     /** 刷新数据监听 **/
     private OnRefreshListener listener;
-    protected List<IBannerValue> bannerValues;
+    protected List<IBannerValue> items;
 
     @Override
     public int getCount() {
-        //返回轮播图数量
-        if (bannerValues == null) {
-            return 0;
-        }
-        return bannerValues.size();
+        return items == null ? 0 : items.size();
     }
 
     @Override
@@ -75,24 +70,24 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
 
     /**
      * 功能描述：设置数据源
-     * @param data
+     * @param items
      */
-    public void setData(List<IBannerValue> data) {
-        setData(data, isLoop);
+    public void setItems(List<IBannerValue> items) {
+        setItems(items, isLoop);
     }
 
     /**
      * 功能描述：设置数据源
-     * @param data
+     * @param items
      */
-    public void setData(List<IBannerValue> data, boolean isLoop) {
-        bannerValues = data;
-        if (data != null && data.size() > 0) {
+    public void setItems(List<IBannerValue> items, boolean isLoop) {
+        this.items = items;
+        if (items != null && items.size() > 0) {
             this.isLoop = isLoop;
-            realCount = data.size();
+            realCount = items.size();
             if (isLoop) {
-                bannerValues.add(0, data.get(realCount - 1));
-                bannerValues.add(data.get(1));
+                this.items.add(0, items.get(realCount - 1));
+                this.items.add(items.get(1));
             }
         }
         notifyDataSetChanged();
@@ -103,20 +98,20 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
      * @param isLoop
      */
     public void setLoop(boolean isLoop) {
-        if (bannerValues == null)
+        if (items == null)
             return;
         if (this.isLoop != isLoop) {
             this.isLoop = isLoop;
             if (!this.isLoop) {
-                if (bannerValues.size() > 2) {
-                    bannerValues.remove(bannerValues.size() - 1);
-                    bannerValues.remove(0);
+                if (items.size() > 2) {
+                    items.remove(items.size() - 1);
+                    items.remove(0);
                 }
             } else {
-                if (bannerValues.size() > 0) {
-                    bannerValues.add(0, bannerValues.get(
-                            bannerValues.size() - 1));
-                    bannerValues.add(bannerValues.get(1));
+                if (items.size() > 0) {
+                    items.add(0, items.get(
+                            items.size() - 1));
+                    items.add(items.get(1));
                 }
             }
             notifyDataSetChanged();
@@ -135,9 +130,22 @@ public abstract class BannerAdapter<T extends BannerAdapter.ViewHolder> extends 
      * 功能描述：获取数据源
      * @return
      */
-    public List<IBannerValue> getData() {
-        return bannerValues;
+    public List<IBannerValue> getItems() {
+        return items;
     }
+
+    /**
+     * 功能描述：获取数据源
+     * @return
+     */
+    public IBannerValue getItem(int position) {
+        if (getCount() == 0)
+            return null;
+        if (position < 0 || position >= getCount())
+            return null;
+        return items.get(position);
+    }
+
     /**
      * 功能描述：获取真实数量
      * @return

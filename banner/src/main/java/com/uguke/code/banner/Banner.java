@@ -15,6 +15,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -84,7 +85,8 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
     private int delayTime;
     /** 滚动时间 **/
     private int scrollTime;
-
+    /** 当前指示器位置 **/
+    private int curPosition;
     //指示器Drawable
     private Drawable indicatorSelectedDrawable;
     private Drawable indicatorUnselectedDrawable;
@@ -187,6 +189,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         bannerConfig = new BannerConfig();
         bannerConfig.addObserver(this);
 
+        curPosition = 0;
         delayTime = 3000;
         scrollTime = 600;
         isLoop = true;
@@ -842,6 +845,27 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         this.scrollTime = scrollTime;
         return this;
     }
+    /**
+     * 功能描述：设置当前位置
+     * @param position 当前位置
+     */
+    public Banner setCurrentItem(int position) {
+        setCurrentItem(position, false);
+        return this;
+    }
+
+    /**
+     * 功能描述：设置当前位置
+     * @param position 当前位置
+     * @param smoothScroll 是否显示动画
+     */
+    public Banner setCurrentItem(int position, boolean smoothScroll) {
+        curPosition = position + (isLoop ? 1 : 0);
+        if (pagerContainer.getAdapter() != null) {
+            pagerContainer.setCurrentItem(curPosition, smoothScroll);
+        }
+        return this;
+    }
 
     /**
      * 功能描述：开始轮播图
@@ -850,30 +874,25 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         if (adapter == null)
             return;
         stop();
+        // 设置动画类型
+        pagerContainer.setPageTransformer(true, isRandomModel ? manager.random() : manager.next());
         pagerContainer.setAdapter(adapter);
         adapter.setLoop(isLoop);
-
         if (adapter.getRealCount() > 0) {
             if (isLoop) {
-                IBannerValue value = (IBannerValue) adapter.getData().get(indicatorLastPosition + 1);
-                pagerContainer.setCurrentItem(indicatorLastPosition + 1, true);
+                IBannerValue value = adapter.getItem(indicatorLastPosition + 1);
                 bannerHint.setText(value.getHint());
                 bannerTitle.setText(value.getTitle());
             } else {
-                IBannerValue value = (IBannerValue) adapter.getData().get(indicatorLastPosition);
-                pagerContainer.setCurrentItem(indicatorLastPosition, true);
+                IBannerValue value = adapter.getItem(indicatorLastPosition);
                 bannerHint.setText(value.getHint());
                 bannerTitle.setText(value.getTitle());
             }
+            pagerContainer.setCurrentItem(curPosition, false);
         }
 
         if (isAutomatic) {
             handler.sendEmptyMessageDelayed(HANDLER_WHAT, delayTime);
-        }
-        if (isRandomModel) {
-            pagerContainer.setPageTransformer(true, manager.random());
-        } else {
-            pagerContainer.setPageTransformer(true, manager.next());
         }
     }
 
@@ -892,13 +911,23 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         this.listener = listener;
     }
 
+    /**
+     * 功能描述：获取当前轮播图位置
+     * @return 当前轮播图位置
+     */
+    public int getCurrentItem() {
+        return curPosition - (isLoop ? 1 : 0);
+    }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
     @Override
     public void onPageSelected(int position) {
 
-        IBannerValue value = (IBannerValue) adapter.getData().get(position);
+        curPosition = position;
+
+        IBannerValue value = adapter.getItem(position);
         //设置Banner属性
         bannerHint.setText(value.getHint());
         bannerTitle.setText(value.getTitle());
@@ -922,12 +951,8 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         //设置圆形指示器
         numIndicator.setText((position + 1) + "/" + adapter.getRealCount());
         indicatorLastPosition = position;
-        //如果是随机模式
-        if (isRandomModel) {
-            pagerContainer.setPageTransformer(true, manager.random());
-        } else {
-            pagerContainer.setPageTransformer(true, manager.next());
-        }
+        // 设置动画类型
+        pagerContainer.setPageTransformer(true, isRandomModel ? manager.random() : manager.next());
         if (listener != null) {
             listener.onPageSelected(position, pagerContainer.getCurrentItem());
         }

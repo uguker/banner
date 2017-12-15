@@ -46,7 +46,7 @@ public class ImageBannerAdapter extends BannerAdapter {
             return;
         ImageView image = (ImageView) holder.itemView;
         image.setScaleType(scaleType);
-        final IBannerValue value = (IBannerValue) bannerValues.get(position);
+        final IBannerValue value = (IBannerValue) items.get(position);
         imageLoader.loadImage(holder.itemView.getContext(), value.getUri(), image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         values.add(value);
         //绑定数据
         banner.setAdapter(adapter);
-        adapter.setData(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
-        adapter.setData(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+        adapter.setItems(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+        adapter.setItems(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
             @Override
@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTitleBackgroundColor(Color.parseColor("#88000000")) //标题栏背景色
                 .setBannerType(Banner.TYPE_TITLE_INDICATOR_CENTER)      //轮播图样式
                 .notifyViewChange();                                    //通知改变布局
-        //banner.notifyViewChange();
         banner.addTransformer(new BTFTransformer());    //添加动画
         banner.openRandomModel(true);                   //开启随机动画
         banner.setScrollable(true);                     //轮播图是否可以手动拖动，默认true
@@ -117,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int realPosition, int itemPosition) {}
         });
+        banner.setCurrentItem(1);                       //设置banner位置
         banner.start();         //最好放到设置数据源之后，不然会从最后一张开始展示
+
 
     }
 }
