@@ -9,7 +9,7 @@ public class BannerConfig extends Observable {
     /** 轮播图样式 **/
     private @Banner.BannerType int bannerType;
     /** 缩放样式 **/
-    private int scaleType;
+    private @Banner.ScaleType int scaleType;
     //标题属性
     private float titleHeight;
     private float titlePaddingLeft;
@@ -49,7 +49,7 @@ public class BannerConfig extends Observable {
     public BannerConfig() {
 
         bannerType = Banner.TYPE_TITLE_INDICATOR_CENTER;
-        scaleType = 5;
+        scaleType = Banner.SCALE_FIT_CENTER;
 
         //标题属性
         titleHeight = 30;
@@ -93,7 +93,7 @@ public class BannerConfig extends Observable {
         return bannerType;
     }
 
-    public int getScaleType() {
+    public @Banner.ScaleType int getScaleType() {
         return scaleType;
     }
 
@@ -222,7 +222,7 @@ public class BannerConfig extends Observable {
         return this;
     }
 
-    public BannerConfig setScaleType(int scaleType) {
+    public BannerConfig setScaleType(@Banner.ScaleType int scaleType) {
         this.scaleType = scaleType;
         return this;
     }

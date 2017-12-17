@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -15,9 +14,7 @@ import com.uguke.code.banner.adapter.ImageBannerAdapter;
 import com.uguke.code.banner.bean.BannerValue;
 import com.uguke.code.banner.bean.IBannerValue;
 import com.uguke.code.banner.loader.SimpleImageLoader;
-import com.uguke.code.banner.transformer.BTFTransformer;
 import com.uguke.code.banner.transformer.DefaultTransformer;
-import com.uguke.code.banner.transformer.ScaleTransformer;
 
 
 import java.util.ArrayList;
@@ -63,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         values.add(value);
         //绑定数据
         banner.setAdapter(adapter);
-        //adapter.setItems(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setItems(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitlePaddingRight(16)
                 .setIndicatorPaddingBottom(0)
                 .setIndicatorPaddingBottom(0)
-                .setScaleType(2)
+                .setScaleType(Banner.SCALE_CENTER_INSIDE)
                 .setTitleBackgroundColor(Color.parseColor("#88000000")) //标题栏背景色
                 .setBannerType(Banner.TYPE_TITLE_INDICATOR_CENTER)      //轮播图样式
                 .notifyViewChange();                                    //通知改变布局
@@ -121,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         });
         banner.setCurrentItem(1);                       //设置banner位置
         banner.start();         //最好放到设置数据源之后，不然会从最后一张开始展示
-
 
     }
 }

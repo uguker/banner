@@ -208,7 +208,8 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
             delayTime = typedArray.getInt(R.styleable.Banner_delayTime, delayTime);
             scrollTime = typedArray.getInt(R.styleable.Banner_scrollTime, scrollTime);
 
-            int scaleType = typedArray.getInt(R.styleable.Banner_scaleType, bannerConfig.getScaleType());
+            int scaleType = typedArray.getInt(R.styleable.Banner_scaleType,
+                    bannerConfig.getScaleType());
 
             //轮播图样式
             @BannerType
@@ -697,14 +698,14 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
      */
     private ImageView.ScaleType getScaleType(int scaleType) {
         switch (scaleType) {
-            case 0:  return ImageView.ScaleType.CENTER;
-            case 1:  return ImageView.ScaleType.CENTER_CROP;
-            case 2:  return ImageView.ScaleType.CENTER_INSIDE;
-            case 3:  return ImageView.ScaleType.FIT_CENTER;
-            case 4:  return ImageView.ScaleType.FIT_END;
-            case 5:  return ImageView.ScaleType.FIT_START;
-            case 6:  return ImageView.ScaleType.FIT_XY;
-            case 7:  return ImageView.ScaleType.MATRIX;
+            case SCALE_CENTER:  return ImageView.ScaleType.CENTER;
+            case SCALE_CENTER_CROP:  return ImageView.ScaleType.CENTER_CROP;
+            case SCALE_CENTER_INSIDE:  return ImageView.ScaleType.CENTER_INSIDE;
+            case SCALE_FIT_CENTER:  return ImageView.ScaleType.FIT_CENTER;
+            case SCALE_FIT_END:  return ImageView.ScaleType.FIT_END;
+            case SCALE_FIT_START:  return ImageView.ScaleType.FIT_START;
+            case SCALE_FIT_XY:  return ImageView.ScaleType.FIT_XY;
+            case SCALE_MATRIX:  return ImageView.ScaleType.MATRIX;
             default: return ImageView.ScaleType.CENTER_CROP;
         }
     }
@@ -993,7 +994,34 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
     public void update(Observable o, Object arg) {
         initView();
         initIndicator();
+        if(adapter != null && adapter instanceof ImageBannerAdapter) {
+            ((ImageBannerAdapter) adapter).setScaleType(
+                    getScaleType(bannerConfig.getScaleType()));
+        }
     }
+
+
+    public static final int SCALE_CENTER = 0;
+    public static final int SCALE_CENTER_CROP = 1;
+    public static final int SCALE_CENTER_INSIDE = 2;
+    public static final int SCALE_FIT_CENTER = 3;
+    public static final int SCALE_FIT_START = 4;
+    public static final int SCALE_FIT_END = 5;
+    public static final int SCALE_FIT_XY = 6;
+    public static final int SCALE_MATRIX = 7;
+
+    @IntDef({
+            SCALE_CENTER,
+            SCALE_CENTER_CROP,
+            SCALE_CENTER_INSIDE,
+            SCALE_FIT_CENTER,
+            SCALE_FIT_START,
+            SCALE_FIT_END,
+            SCALE_FIT_XY,
+            SCALE_MATRIX})
+    @Retention(RetentionPolicy.SOURCE)
+    //缩放样式
+    public @interface ScaleType {}
 
     /** Banner样式（不显示任何附加信息） **/
     public static final int TYPE_NONE = 0;
