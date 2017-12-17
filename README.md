@@ -55,7 +55,6 @@ dependencies {
         values.add(value);
         //绑定数据
         banner.setAdapter(adapter);
-        adapter.setItems(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
 	adapter.setItems(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
@@ -98,7 +97,8 @@ dependencies {
                 .setIndicatorPaddingBottom(0)
                 .setIndicatorPaddingBottom(0)
                 .setTitleBackgroundColor(Color.parseColor("#88000000")) //标题栏背景色
-                .setBannerType(Banner.TYPE_TITLE_INDICATOR_CENTER)      //轮播图样式
+		.setScaleType(Banner.SCALE_FIT_CENTER)		        //设置缩放样式
+                .setBannerType(Banner.TYPE_TITLE_INDICATOR_CENTER)      //轮播图样式
                 .notifyViewChange();                                    //通知改变布局
         banner.addTransformer(new BTFTransformer());    //添加动画
         banner.openRandomModel(true);                   //开启随机动画
