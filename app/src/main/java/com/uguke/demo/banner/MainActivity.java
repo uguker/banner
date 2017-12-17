@@ -16,6 +16,8 @@ import com.uguke.code.banner.bean.BannerValue;
 import com.uguke.code.banner.bean.IBannerValue;
 import com.uguke.code.banner.loader.SimpleImageLoader;
 import com.uguke.code.banner.transformer.BTFTransformer;
+import com.uguke.code.banner.transformer.DefaultTransformer;
+import com.uguke.code.banner.transformer.ScaleTransformer;
 
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        List<BannerValue> values = new ArrayList<>();
+        List<IBannerValue> values = new ArrayList<>();
         //设置数据
         BannerValue value = new BannerValue();
         value.setTitle("美女");
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         values.add(value);
         //绑定数据
         banner.setAdapter(adapter);
-        adapter.setItems(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
+        //adapter.setItems(values);        //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setItems(values, true);  //注意，设置要设置为对应的数据集，可循环设置为true， 可不循环设置为false，默认为false
         adapter.setScaleType(ImageView.ScaleType.FIT_XY);
         adapter.setOnItemClickListener(new ImageBannerAdapter.OnItemClickListener() {
@@ -87,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 .setIndicatorUnselectedColor(Color.RED)         //指示器未选中时颜色，设置drawable失效
                 .setIndicatorSelectedShape(Banner.SHAPE_STAR)   //指示器选中时图形，设置drawable失效
                 .setIndicatorUnselectedShape(Banner.SHAPE_LINE) //指示器未选中时图形，设置drawable失效
-                .setIndicatorSelectedResId(R.drawable.b2)       //指示器选中时图片，设置drawable失效
-                .setIndicatorUnselectedResId(R.drawable.b3)     //指示器未选中时图片，设置drawable失效
+                //.setIndicatorSelectedResId(R.drawable.b2)       //指示器选中时图片，设置drawable失效
+                //.setIndicatorUnselectedResId(R.drawable.b3)     //指示器未选中时图片，设置drawable失效
                 .setNumIndicatorMargin(10)                      //数字指示器外部间隔，单位dp
                 .setNumIndicatorSize(60)                        //数字指示器大小，单位dp
                 .setNumIndicatorTextColor(Color.WHITE)          //数字指示器文字颜色，单位dp
@@ -103,11 +105,12 @@ public class MainActivity extends AppCompatActivity {
                 .setTitlePaddingRight(16)
                 .setIndicatorPaddingBottom(0)
                 .setIndicatorPaddingBottom(0)
+                .setScaleType(2)
                 .setTitleBackgroundColor(Color.parseColor("#88000000")) //标题栏背景色
                 .setBannerType(Banner.TYPE_TITLE_INDICATOR_CENTER)      //轮播图样式
                 .notifyViewChange();                                    //通知改变布局
-        banner.addTransformer(new BTFTransformer());    //添加动画
-        banner.openRandomModel(true);                   //开启随机动画
+        banner.addTransformer(new DefaultTransformer());    //添加动画
+        //banner.openRandomModel(true);                   //开启随机动画
         banner.setScrollable(true);                     //轮播图是否可以手动拖动，默认true
         banner.setLoop(true);                           //是否可以循环播放，默认true
         banner.setScrollTime(800);                      //动画滚动时间，默认600毫秒

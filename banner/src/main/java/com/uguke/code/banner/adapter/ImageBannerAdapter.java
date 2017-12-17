@@ -1,9 +1,11 @@
 package com.uguke.code.banner.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.uguke.code.banner.R;
 import com.uguke.code.banner.bean.IBannerValue;
 import com.uguke.code.banner.loader.SimpleImageLoader;
 
@@ -12,7 +14,7 @@ import com.uguke.code.banner.loader.SimpleImageLoader;
  * @author LeiJue
  * @time 2017/08/25
  */
-public class ImageBannerAdapter extends BannerAdapter {
+public class ImageBannerAdapter extends BannerAdapter<ImageBannerAdapter.ViewHolder> {
 
     //缩放样式
     private ImageView.ScaleType scaleType;
@@ -34,7 +36,9 @@ public class ImageBannerAdapter extends BannerAdapter {
             image.setLayoutParams(params);
         }
 
-        return new ViewHolder(image);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.banner_item, null);
+        //return new ViewHolder(image);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -44,10 +48,10 @@ public class ImageBannerAdapter extends BannerAdapter {
             return;
         if (imageLoader == null)
             return;
-        ImageView image = (ImageView) holder.itemView;
-        image.setScaleType(scaleType);
-        final IBannerValue value = (IBannerValue) items.get(position);
-        imageLoader.loadImage(holder.itemView.getContext(), value.getUri(), image);
+        //ImageView image = (ImageView) holder.itemView;
+        holder.image.setScaleType(scaleType);
+        final IBannerValue value = items.get(position);
+        imageLoader.loadImage(holder.itemView.getContext(), value.getUri(), holder.image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +68,7 @@ public class ImageBannerAdapter extends BannerAdapter {
 
     public void setScaleType(ImageView.ScaleType scaleType) {
         this.scaleType = scaleType;
+        notifyDataSetChanged();
     }
 
     public void setImageLoader(SimpleImageLoader imageLoader) {
@@ -83,5 +88,16 @@ public class ImageBannerAdapter extends BannerAdapter {
          * @param value 数据
          */
         void onItemClick(int realPosition, int itemPosition, IBannerValue value);
+    }
+
+
+    static class ViewHolder extends BannerAdapter.ViewHolder {
+
+        private ImageView image;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            image = (ImageView) itemView.findViewById(R.id.item_img);
+        }
     }
 }

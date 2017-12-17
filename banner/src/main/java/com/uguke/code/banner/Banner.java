@@ -81,6 +81,8 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
     private boolean isScrollable;
     /** 是否开启循环 **/
     private boolean isLoop;
+    /** 是否显示指示器 **/
+    private boolean isShowIndicator;
     /** 延时时间 **/
     private int delayTime;
     /** 滚动时间 **/
@@ -472,6 +474,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 params.bottomMargin = (int) (bannerConfig.getIndicatorMarginBottom() * density);
                 indicatorContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             case TYPE_INDICATOR_LEFT:
                 messageContainer.setVisibility(VISIBLE);
@@ -483,6 +486,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 params.leftMargin = (int) (bannerConfig.getIndicatorMarginLeft() * density);
                 params.bottomMargin = (int) (bannerConfig.getIndicatorMarginBottom() * density);
                 indicatorContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             case TYPE_INDICATOR_RIGHT:
                 messageContainer.setVisibility(VISIBLE);
@@ -494,24 +498,28 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 params.rightMargin = (int) (bannerConfig.getIndicatorMarginRight() * density);
                 params.bottomMargin = (int) (bannerConfig.getIndicatorMarginBottom() * density);
                 indicatorContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             case TYPE_NUM_INDICATOR:
                 messageContainer.setVisibility(VISIBLE);
                 numIndicator.setVisibility(VISIBLE);
                 titleContainer.setVisibility(GONE);
                 indicatorContainer.setVisibility(GONE);
+                isShowIndicator = false;
                 break;
             case TYPE_TITLE:
                 messageContainer.setVisibility(VISIBLE);
                 numIndicator.setVisibility(GONE);
                 titleContainer.setVisibility(VISIBLE);
                 indicatorContainer.setVisibility(GONE);
+                isShowIndicator = false;
                 break;
             case TYPE_TITLE_NUM_INDICATOR:
                 messageContainer.setVisibility(VISIBLE);
                 numIndicator.setVisibility(VISIBLE);
                 titleContainer.setVisibility(VISIBLE);
                 indicatorContainer.setVisibility(GONE);
+                isShowIndicator = false;
                 break;
             case TYPE_TITLE_INDICATOR_CENTER:
                 messageContainer.setVisibility(VISIBLE);
@@ -523,6 +531,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 params.bottomMargin = (int) (bannerConfig.getIndicatorMarginBottom() * density);
                 params.addRule(RelativeLayout.ABOVE, R.id.container_title);
                 indicatorContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             case TYPE_TITLE_INDICATOR_LEFT:
                 messageContainer.setVisibility(VISIBLE);
@@ -535,6 +544,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 params.bottomMargin = (int) (bannerConfig.getIndicatorMarginBottom() * density);
                 params.addRule(RelativeLayout.ABOVE, R.id.container_title);
                 indicatorContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             case TYPE_TITLE_INDICATOR_RIGHT:
                 messageContainer.setVisibility(VISIBLE);
@@ -547,6 +557,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                 params.bottomMargin = (int) (bannerConfig.getIndicatorMarginBottom() * density);
                 params.addRule(RelativeLayout.ABOVE, R.id.container_title);
                 indicatorContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             case TYPE_TITLE_IN_INDICATOR:
                 messageContainer.setVisibility(VISIBLE);
@@ -564,6 +575,7 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         (int) (bannerConfig.getTitleHeight() * density));
                 titleContainer.setLayoutParams(params);
+                isShowIndicator = true;
                 break;
             default:
                 messageContainer.setVisibility(GONE);
@@ -578,10 +590,10 @@ public class Banner extends FrameLayout implements Observer, ViewPager.OnPageCha
         indicatorList.clear();
         indicatorContainer.removeAllViews();
         initDrawable();
-        if (adapter.getRealCount() == 0) {
-            indicatorContainer.setVisibility(INVISIBLE);
-        } else {
+        if (adapter.getRealCount() != 0 && isShowIndicator) {
             indicatorContainer.setVisibility(VISIBLE);
+        } else {
+            indicatorContainer.setVisibility(GONE);
         }
         for (int i = 0; i < adapter.getRealCount(); i++) {
             View view = new View(context);
