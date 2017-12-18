@@ -14,7 +14,7 @@ allprojects {
 2. 添加依赖关系
 ```
 dependencies {
-	compile 'com.github.uguker:banner:1.1.7'
+	compile 'com.github.uguker:banner:1.1.8'
 }
 ```
 ## 效果
@@ -34,7 +34,7 @@ dependencies {
             }
         });
 
-        List<BannerValue> values = new ArrayList<>();
+        List<IBannerValue> values = new ArrayList<>();
         //设置数据
         BannerValue value = new BannerValue();
         value.setTitle("美女");
