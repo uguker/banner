@@ -6,8 +6,9 @@ import android.view.View;
 import java.io.Serializable;
 
 /**
- * 图片加载器
- * @param <T>
+ * 功能描述：图片加载器
+ * @author LeiJue
+ * @date 2018/9/25
  */
 public interface ImageLoader <T extends View> extends Serializable {
     void loadImage(Context context, Object path, T imageView);

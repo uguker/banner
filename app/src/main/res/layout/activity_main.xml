@@ -10,13 +10,12 @@
     <com.uguke.code.banner.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:indicator_width="10dp"
-        app:indicator_height="10dp"
-        app:indicator_selected_shape="star"
-        app:indicator_unselected_shape="emptyStar"
-        app:title_height="30dp"
-        app:bannerType="indicatorCenter">
+        android:layout_height="200dp"
+        app:titleHeight="40dp"
+        app:titlePadding="30dp"
+        app:titlePaddingLeft="10dp"
+        app:numberMargin="0dp"
+        app:numberBackground="@color/colorAccent">
     </com.uguke.code.banner.Banner>
 
     <!--<com.youth.banner.Banner

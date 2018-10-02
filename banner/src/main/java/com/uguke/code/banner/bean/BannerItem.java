@@ -1,9 +1,12 @@
 package com.uguke.code.banner.bean;
 
 /**
- * 轮播图值
+ * 功能描述：轮播图项
+ * @author LeiJue
+ * @date 2018/9/25
  */
-public class BannerValue implements IBannerValue<Object> {
+public class BannerItem implements IBannerItem<Object> {
+
     /** 资源 **/
     private Object uri;
     /** 提示 **/

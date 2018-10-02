@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 /**
  * 功能描述：轮播图滚动控制
  * @author LeiJue
- * @time 2017/08/25
+ * @date 2018/9/25
  */
 public class BannerScroller {
 
